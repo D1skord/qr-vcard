@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="favicon.ico"/>
+    <title>Визитка с qr кодом онлайн</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body style="">
+
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M19 2c1.654 0 3 1.346 3 3v14c0 1.654-1.346 3-3 3h-14c-1.654 0-3-1.346-3-3v-14c0-1.654 1.346-3 3-3h14zm0-2h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-8 8h-1v-2h1v1h2v1h-1v1h-1v-1zm2 12v-1h-1v1h1zm-1-15v-1h-2v1h1v1h1v-1zm8-1v6h-1v-1h-4v-5h5zm-1 4v-3h-3v3h3zm-14 2h-1v1h2v-1h-1zm0 3h1v1h1v-3h-1v1h-2v2h1v-1zm5 1v2h1v-2h-1zm4-10h-1v3h1v-3zm0 5v-1h-1v1h1zm3-2h1v-1h-1v1zm-10-1h-1v1h1v-1zm2-2v5h-5v-5h5zm-1 1h-3v3h3v-3zm9 5v1h-1v-1h-2v1h-1v-1h-3v-1h-1v1h-1v1h1v2h1v-1h1v2h1v-2h3v1h-2v1h2v1h1v-3h1v1h1v2h1v-1h1v-1h-1v-1h-1v-1h1v-1h-2zm-11 8h1v-1h-1v1zm-2-3h5v5h-5v-5zm1 4h3v-3h-3v3zm12-3v-1h-1v1h1zm0 1h-1v1h-1v-1h-1v-1h1v-1h-2v-1h-1v2h-1v1h-1v3h1v-1h1v-1h2v2h1v-1h1v1h2v-1h1v-1h-2v-1zm-9-3h1v-1h-1v1zm10 2v1h1v1h1v-3h-1v1h-1zm2 4v-1h-1v1h1zm0-8v-1h-1v1h1z"/></svg>
+            <span class="fs-4 ps-4">QR Generator - создание qr кодов</span>
+        </a>
+    </header>
+
+    <main>
+        <h1>Создай свою уникальную QR код визитку</h1>
+        <p class="fs-5 col-md-8">Заполните поля для создания QR визитки:</p>
+
+        <hr class="col-3 col-md-2 mb-5">
+
+        <div class="row">
+            <div class="col-sm-6">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-8">
+                {% form_theme form 'bootstrap_5_layout.html.twig' %}
+                {{ form_start(form, {'attr': {'id': 'vcard_form', 'class': 'vcard-form'}}) }}
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(form) }}
+                </div>
+
+                <div class="row pt-3">
+                    <div class="col-sm-6">
+                        {{ form_row(form.first_name) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_row(form.last_name) }}
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-6">
+                        {{ form_row(form.tel) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-6">
+                        {{ form_row(form.org) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_row(form.title) }}
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-6">
+                        Адрес
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-6">
+                        {{ form_row(form.postcode) }}
+                    </div>
+                    <div class="col-sm-6 pt-3">
+                        {{ form_row(form.country) }}
+                    </div>
+                    <div class="col-sm-6 pt-3">
+                        {{ form_row(form.region) }}
+                    </div>
+                    <div class="col-sm-6 pt-3">
+                        {{ form_row(form.streetHouseNumber) }}
+                    </div>
+                    <div class="col-sm-6 pt-3">
+                        {{ form_row(form.city) }}
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-6">
+                        {{ form_row(form.url) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_row(form.bday) }}
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-sm-12">
+                        {{ form_row(form.note) }}
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-sm-12 pt-3">
+                        <div class="mb-2">
+                            Размер кода:
+                        </div>
+                        <div class="btn-toolbar" id="vcard_form_size" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-outline-secondary">1</button>
+                                <button type="button" class="btn btn-outline-secondary">2</button>
+                                <button type="button" class="btn btn-outline-secondary">3</button>
+                                <button type="button" class="btn btn-outline-secondary">4</button>
+                                <button type="button" class="btn btn-outline-secondary">5</button>
+                                <button type="button" class="btn btn-outline-secondary">6</button>
+                            </div>
+                                {{ form_row(form.size) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <div class="col-sm-6 align-items-center d-flex">
+                        <div class="me-3">
+                            Цвет фона:
+                        </div>
+                        {{ form_row(form.color_bg) }}
+                        <button type="button" class="btn btn-info btn-sm text-light ms-3 fs-6" data-bs-toggle="popover" title="Важно!" data-bs-content="При выборе цветов для QR кода помните главное правило: цвет кода должен быть темным на светлом фоне, не наоборот. Должен присутствовать контраст, чтобы при распознавании было понятно где фон, а где сам код.">
+                            🛈
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="row pt-4">
+                    <div class="col-sm-6 align-items-center d-flex">
+                        <div class="me-3">
+                            Цвет кода:
+                        </div>
+                        {{ form_row(form.color_qr) }}
+                    </div>
+                </div>
+
+                <div class="row pt-3">
+                    <div class="col-sm-12 pt-3 d-flex justify-content-center">
+                        {{ form_row(form.add) }}
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 d-flex flex-column align-items-center">
+                <div id="qr_result" class="qr-result">
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer class="pt-5 my-5 text-muted border-top">
+        Created by · © 2021
+    </footer>
+</div>
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
+</html>
