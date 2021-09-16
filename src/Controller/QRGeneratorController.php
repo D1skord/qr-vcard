@@ -40,7 +40,7 @@ class QRGeneratorController extends AbstractController
             if ($VCardForm->isSubmitted() && $VCardForm->isValid()) {
                 $VCard = $VCardForm->getData();
                 $entityManager = $this->getDoctrine()->getManager();
-                //$entityManager->persist($VCard);
+                $entityManager->persist($VCard);
                 $entityManager->flush();
 
 
